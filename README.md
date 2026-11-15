@@ -11,7 +11,7 @@ AI-Enablement-Team の知識HTMLを公開する場所です。GitHub Pages でWe
 
 1. 分類フォルダに HTML を置く：`<分類>/YYYYMMDD_テーマ.html`
 2. CSS・画像は HTML の中に入れ、1ファイルで完結させる
-3. ページ下部などに、トップページ（`../index.html`）へ戻るリンクを付ける
+3. 上部に Home に戻るボタン（`../index.html` へのリンク）を付ける。既存記事の `<nav class="topbar">` と `.topbar` `.home` のCSSをコピーすればよい
 4. `index.html` の `ARTICLES` に1件書き足す
 5. commit → push すると、数分で公開ページに反映される
 

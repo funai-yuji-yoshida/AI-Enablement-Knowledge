@@ -1,6 +1,6 @@
 # AI活用ナレッジ
 
-AI-Enablement-Team の知識HTMLを公開する場所です。GitHub Pages でWebページとして見られます。
+AX教育ユニット-AX Enablement Team- の知識HTMLを公開する場所です。GitHub Pages でWebページとして見られます。
 
 **公開ページ**：https://funai-yuji-yoshida.github.io/AI-Enablement-Knowledge/
 

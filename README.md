@@ -2,10 +2,10 @@
 
 AX教育ユニット-AX Enablement Team- の知識HTMLを公開する場所です。GitHub Pages でWebページとして見られます。
 
-**公開ページ**：https://funai-yuji-yoshida.github.io/AI-Enablement-Knowledge/
+**公開ページ**：https://funai-yuji-yoshida.github.io/AX-Enablement-Knowledge/
 
 > このリポジトリと公開ページは、**誰でも見られます**。顧客情報・社外秘・個人情報は絶対に入れないでください。
-> メンバーの課題や社内向けの資料は、非公開の AI-Enablement-Team に置きます。
+> メンバーの課題や社内向けの資料は、非公開の AX-Enablement-Team に置きます。
 
 ## 記事の追加方法
 

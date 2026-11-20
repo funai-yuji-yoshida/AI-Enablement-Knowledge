@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>成果を上げる人の違い</title>
+<meta name="description" content="AI活用で成果を上げる人と、セミナーを受講しても効果を感じない人の違い。差を生むのは知識量や操作スキルではなく、AIを使って仕事を変えようとしているかどうか。">
+<style>
+:root{
+  --bg:#f7f6f2; --surface:#ffffff; --text:#1f2328; --muted:#5b6370; --line:#e3e0d8;
+  --accent:#1f6f5c; --accent-soft:#e3f1ec;
+  --win:#1f6f5c; --win-soft:#e3f1ec; --lose:#8a5a3c; --lose-soft:#f5ece4;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16181b; --surface:#1f2226; --text:#e8e6e1; --muted:#a3a9b2; --line:#33373d;
+    --accent:#6cc4a8; --accent-soft:#1d3530;
+    --win:#6cc4a8; --win-soft:#1d3530; --lose:#e0a986; --lose-soft:#3a2c22;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16181b; --surface:#1f2226; --text:#e8e6e1; --muted:#a3a9b2; --line:#33373d;
+  --accent:#6cc4a8; --accent-soft:#1d3530;
+  --win:#6cc4a8; --win-soft:#1d3530; --lose:#e0a986; --lose-soft:#3a2c22;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);
+  font-family:"Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;line-height:1.8;font-size:16px}
+.wrap{max-width:960px;margin:0 auto;padding:40px 16px 80px}
+.topbar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+.home{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border:1px solid var(--line);border-radius:99px;
+  background:var(--surface);color:var(--text);text-decoration:none;font-size:14px;font-weight:600}
+.home:hover{border-color:var(--accent);color:var(--accent)}
+.home:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.topbar .site{color:var(--muted);font-size:13px}
+
+.kicker{color:var(--accent);font-weight:700;font-size:13px;letter-spacing:.08em}
+h1{font-size:clamp(26px,4.6vw,40px);line-height:1.35;margin:6px 0 16px}
+.lead{color:var(--muted);margin:0;max-width:46em}
+h2{font-size:22px;margin:64px 0 8px;padding-top:8px;border-top:2px solid var(--text);line-height:1.4}
+h2 .no{color:var(--accent);margin-right:10px;font-variant-numeric:tabular-nums}
+.sub{color:var(--muted);margin:0 0 20px}
+
+.thesis{margin:32px 0 0;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--accent);
+  border-radius:12px;padding:22px 24px}
+.thesis .not{color:var(--muted);font-size:15px;margin:0 0 6px}
+.thesis .not s{text-decoration-thickness:2px}
+.thesis .is{font-size:clamp(19px,3vw,25px);font-weight:800;line-height:1.5;margin:0}
+.thesis .is em{font-style:normal;background:linear-gradient(transparent 62%,var(--accent-soft) 62%)}
+
+/* compare table */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;margin:0 0 10px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.legend .w::before{background:var(--win)} .legend .l::before{background:var(--lose)}
+table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15px}
+th,td{padding:10px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{font-size:13px;font-weight:700}
+thead th.w{color:var(--win)} thead th.l{color:var(--lose)}
+tbody th{font-weight:700;white-space:nowrap;color:var(--muted);font-size:14px;width:7em}
+td.w{background:var(--win-soft);font-weight:600}
+td.l{color:var(--muted)}
+tr:last-child th,tr:last-child td{border-bottom:none}
+
+/* reasons */
+.reasons{display:grid;gap:10px}
+.reason{display:grid;grid-template-columns:3.2em 1fr 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.reason .n{display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;color:var(--accent);border-right:1px solid var(--line)}
+.reason .side{padding:12px 16px;font-size:15px}
+.reason .side b{display:block;font-size:12px;letter-spacing:.04em}
+.reason .t{grid-column:2 / -1;padding:12px 16px 0;font-weight:800;font-size:17px}
+.reason .w b{color:var(--win)} .reason .l b{color:var(--lose)}
+.reason .l{color:var(--muted)}
+.reason .n{grid-row:span 2}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:7em repeat(5,1fr);gap:6px;font-size:14px}
+.tl .h{font-weight:700;font-size:13px;text-align:center;color:var(--muted);padding:6px 4px;border-bottom:2px solid var(--text)}
+.tl .lab{font-weight:700;font-size:13px;display:flex;align-items:center}
+.tl .lab.w{color:var(--win)} .tl .lab.l{color:var(--lose)}
+.tl .c{border-radius:8px;padding:10px 10px;line-height:1.6}
+.tl .c.w{background:var(--win-soft)}
+.tl .c.l{background:var(--lose-soft);color:var(--muted)}
+.gap{margin:16px 0 0;font-size:clamp(17px,2.6vw,20px);font-weight:800;text-align:center;padding:14px;border:2px dashed var(--line);border-radius:12px}
+
+/* types ladder */
+.ladder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:14px;align-items:start}
+.steps{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.steps button{width:100%;display:flex;align-items:center;gap:12px;font:inherit;text-align:left;cursor:pointer;
+  background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.steps button .lv{flex:none;width:2em;height:2em;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:800;background:var(--accent-soft);color:var(--accent)}
+.steps button:hover{border-color:var(--accent)}
+.steps button[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.steps button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.answer{position:sticky;top:64px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.answer .q{font-size:13px;color:var(--muted);margin:0}
+.answer .state{font-size:20px;font-weight:800;margin:2px 0 12px}
+.answer .lbl{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.04em}
+.answer .do{font-size:18px;font-weight:700;margin:2px 0 0}
+.answer .hint{margin:12px 0 0;font-size:14px;color:var(--muted)}
+
+/* four powers */
+.powers{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.pw{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.pw .i{font-size:13px;font-weight:800;color:var(--accent)}
+.pw h3{font-size:18px;margin:2px 0 6px}
+.pw p{margin:0;font-size:14px;color:var(--muted)}
+.lit{margin:14px 0 0;padding:14px 18px;border-radius:10px;background:var(--accent-soft);font-size:16px}
+.lit b{color:var(--accent)}
+
+/* closing */
+.closing{margin-top:64px;background:var(--text);color:var(--bg);border-radius:16px;padding:40px 28px}
+.closing .k{font-size:13px;letter-spacing:.08em;opacity:.7;margin:0 0 12px}
+.closing .no{font-size:17px;opacity:.75;margin:0 0 14px}
+.closing .yes{font-size:clamp(21px,3.6vw,30px);font-weight:800;line-height:1.55;margin:0}
+
+footer{margin-top:48px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
+.home-bottom{margin-bottom:12px}
+
+@media (max-width:760px){
+  .powers{grid-template-columns:1fr 1fr}
+  .ladder{grid-template-columns:1fr}
+  .answer{position:static}
+  .tl{grid-template-columns:1fr 1fr}
+  .tl .h,.tl .corner{display:none}
+  .tl .lab{grid-column:1 / -1;margin-top:8px}
+  .tl .c::before{content:attr(data-when);display:block;font-size:11px;font-weight:700;opacity:.7}
+}
+@media (max-width:560px){
+  .reason{grid-template-columns:2.6em 1fr}
+  .reason .t{grid-column:2}
+  .reason .n{grid-row:span 3}
+  .reason .side{grid-column:2;padding-top:6px}
+  th,td{padding:8px 10px;font-size:14px}
+  tbody th{width:auto;white-space:normal}
+  .powers{grid-template-columns:1fr}
+}
+@media print{ body{background:#fff} .topbar{display:none} .answer{position:static} }
+</style>
+</head>
+<body>
+<nav class="topbar" aria-label="サイト内ナビゲーション">
+  <div class="topbar-in">
+    <a class="home" href="../index.html">← Home</a>
+    <span class="site">AI活用ナレッジ</span>
+  </div>
+</nav>
+
+<div class="wrap">
+<header>
+  <div class="kicker">KNOWLEDGE ／ 教え方</div>
+  <h1>AI活用で成果を上げる人と、<br>セミナーを受けても効果を感じない人の違い</h1>
+  <p class="lead">同じセミナーを受けても、成果を出す人と何も変わらない人がいます。その差はどこから生まれ、教える側は何をすればよいのかを整理しました。</p>
+  <div class="thesis">
+    <p class="not"><s>AIの知識量</s>　<s>操作スキル</s>　よりも</p>
+    <p class="is">差を生むのは、<em>「AIを使って仕事を変えようとしているか」</em>どうか。</p>
+  </div>
+</header>
+
+<section>
+  <h2><span class="no">01</span>成果を上げる人・上げられない人の違い</h2>
+  <p class="sub">8つの観点で比べると、違いは「使い方」より「向き合い方」にあります。</p>
+  <div class="legend"><span class="w">成果を上げる人</span><span class="l">成果を感じない人</span></div>
+  <table>
+    <thead><tr><th>観点</th><th class="w">成果を上げる人</th><th class="l">成果を感じない人</th></tr></thead>
+    <tbody>
+      <tr><th>AIへの認識</th><td class="w">仕事を変える道具</td><td class="l">質問に答えてくれる道具</td></tr>
+      <tr><th>課題意識</th><td class="w">解決したい課題がある</td><td class="l">何に使えばよいかわからない</td></tr>
+      <tr><th>利用方法</th><td class="w">日常業務に組み込む</td><td class="l">思いついたときに使う</td></tr>
+      <tr><th>思考</th><td class="w">AIと一緒に考える</td><td class="l">AIに答えを求める</td></tr>
+      <tr><th>行動</th><td class="w">試行錯誤を繰り返す</td><td class="l">1回試して終わる</td></tr>
+      <tr><th>評価</th><td class="w">成果や時間削減で評価</td><td class="l">回答の面白さで評価</td></tr>
+      <tr><th>学習</th><td class="w">自分の業務で学ぶ</td><td class="l">セミナーで学んで終わる</td></tr>
+      <tr><th>発展</th><td class="w">他の業務にも応用する</td><td class="l">教わった使い方に限定する</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2><span class="no">02</span>なぜ違いが生まれるのか：5つの理由</h2>
+  <div class="reasons">
+    <div class="reason"><div class="n">1</div><div class="t">課題の有無</div>
+      <div class="side w"><b>成果を上げる人</b>解決したい仕事上の課題がある</div>
+      <div class="side l"><b>成果を感じない人</b>AIで何ができるかを知ることが目的になっている</div></div>
+    <div class="reason"><div class="n">2</div><div class="t">思考習慣の違い</div>
+      <div class="side w"><b>成果を上げる人</b>AIに問いを投げ、回答を検証し、改善する</div>
+      <div class="side l"><b>成果を感じない人</b>最初の回答で満足する。期待と違うと諦める</div></div>
+    <div class="reason"><div class="n">3</div><div class="t">試行回数の違い</div>
+      <div class="side w"><b>成果を上げる人</b>小さく試して改善する</div>
+      <div class="side l"><b>成果を感じない人</b>セミナーで一度体験しただけで終わる</div></div>
+    <div class="reason"><div class="n">4</div><div class="t">仕事の構造の違い</div>
+      <div class="side w"><b>成果を上げる人</b>AIを業務プロセスに組み込んでいる</div>
+      <div class="side l"><b>成果を感じない人</b>仕事のやり方は変えず、一部だけAIに置き換える</div></div>
+    <div class="reason"><div class="n">5</div><div class="t">周囲の環境の違い</div>
+      <div class="side w"><b>成果を上げる人</b>相談できる人、試せる環境、活用を評価する仕組みがある</div>
+      <div class="side l"><b>成果を感じない人</b>個人任せで、活用する時間も機会もない</div></div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="no">03</span>セミナーを受講して効果を感じる人・感じない人</h2>
+  <p class="sub">研修を設計するうえで特に重要なポイントです。差は受講前から始まり、1か月後に大きく開きます。</p>
+  <div class="tl" role="table" aria-label="受講前から1か月後までの比較">
+    <div class="h corner" role="columnheader"></div>
+    <div class="h" role="columnheader">受講前</div><div class="h" role="columnheader">受講中</div><div class="h" role="columnheader">受講直後</div><div class="h" role="columnheader">1週間後</div><div class="h" role="columnheader">1か月後</div>
+    <div class="lab w" role="rowheader">効果を感じる人</div>
+    <div class="c w" data-when="受講前">自分の課題を持っている</div>
+    <div class="c w" data-when="受講中">自分の業務に置き換えて考える</div>
+    <div class="c w" data-when="受講直後">すぐに実務で試す</div>
+    <div class="c w" data-when="1週間後">改善・応用している</div>
+    <div class="c w" data-when="1か月後">業務に定着している</div>
+    <div class="lab l" role="rowheader">効果を感じない人</div>
+    <div class="c l" data-when="受講前">受講することが目的</div>
+    <div class="c l" data-when="受講中">デモを見て理解した気になる</div>
+    <div class="c l" data-when="受講直後">「便利だった」という感想で終わる</div>
+    <div class="c l" data-when="1週間後">使い方を忘れている</div>
+    <div class="c l" data-when="1か月後">元の仕事に戻っている</div>
+  </div>
+  <p class="gap">セミナーの満足度と、実務での成果は別物。</p>
+</section>
+
+<section>
+  <h2><span class="no">04</span>状態に合わせて、必要な対策を変える</h2>
+  <p class="sub">全員に同じAI教育を提供するのではなく、相手の状態に合わせてアプローチを変えます。今の状態を選んでください。</p>
+  <div class="ladder">
+    <ol class="steps" id="steps"></ol>
+    <div class="answer" aria-live="polite">
+      <p class="q">今の状態</p>
+      <p class="state" id="aState"></p>
+      <div class="lbl">必要な対策</div>
+      <p class="do" id="aDo"></p>
+      <p class="hint" id="aHint"></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><span class="no">05</span>成果を左右する4つの力</h2>
+  <div class="powers">
+    <div class="pw"><div class="i">01</div><h3>課題発見力</h3><p>何を解決すべきかを見つける力</p></div>
+    <div class="pw"><div class="i">02</div><h3>問いを立てる力</h3><p>AIに何を考えさせるかを設計する力</p></div>
+    <div class="pw"><div class="i">03</div><h3>評価する力</h3><p>AIの回答を疑い、検証する力</p></div>
+    <div class="pw"><div class="i">04</div><h3>再設計する力</h3><p>仕事の仕組みそのものを変える力</p></div>
+  </div>
+  <p class="lit">これは単なるAIリテラシーではなく、<b>AI時代に必要なビジネスリテラシー</b>です。</p>
+</section>
+
+<section class="closing">
+  <p class="k">私たちが目指すこと</p>
+  <p class="no">AIを上手に操作できる人を育てることではありません。</p>
+  <p class="yes">AIをきっかけに、自ら仕事の課題を発見し、解決策を考え、仕事のあり方を変えられる人を育てること。</p>
+</section>
+
+<footer><div class="home-bottom"><a class="home" href="../index.html">← Home に戻る</a></div>AX教育ユニット-AX Enablement Team- ／ 教え方 ／ 2026-11-20 作成</footer>
+</div>
+
+<script>
+var TYPES = [
+  { s:"AIを知らない",         d:"基礎知識・体験",                 h:"まずは触ってみて「できること・できないこと」を体感してもらう。" },
+  { s:"使い方がわからない",   d:"操作演習・具体的な事例",         h:"自分の仕事に近い事例で、手を動かしながら覚えてもらう。" },
+  { s:"使い道がわからない",   d:"業務課題の発見・業務分析",       h:"AIの話より先に、自分の仕事の困りごとを洗い出す。" },
+  { s:"試すが成果が出ない",   d:"プロンプト改善・評価・検証",     h:"問いの立て方と、回答の確かめ方を一緒に見直す。" },
+  { s:"一部でしか使えない",   d:"業務プロセスの再設計",           h:"作業の置き換えではなく、仕事の流れそのものを組み直す。" },
+  { s:"継続できない",         d:"伴走支援・習慣化・成果の可視化", h:"定期的に振り返り、削減時間などの成果を見える形にする。" },
+  { s:"成果を出している",     d:"応用・自動化・AIエージェント化", h:"他の業務への横展開や、仕組みとしての自動化に進む。" }
+];
+var stepsEl = document.getElementById("steps");
+function pick(i){
+  [].forEach.call(stepsEl.querySelectorAll("button"), function(b, j){ b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+  document.getElementById("aState").textContent = TYPES[i].s;
+  document.getElementById("aDo").textContent = TYPES[i].d;
+  document.getElementById("aHint").textContent = TYPES[i].h;
+}
+TYPES.forEach(function(t, i){
+  var li = document.createElement("li");
+  var b = document.createElement("button");
+  b.type = "button";
+  b.innerHTML = '<span class="lv">' + (i + 1) + '</span><span></span>';
+  b.lastChild.textContent = t.s;
+  b.addEventListener("click", function(){ pick(i); });
+  li.appendChild(b); stepsEl.appendChild(li);
+});
+pick(0);
+</script>
+</body>
+</html>
